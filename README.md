@@ -15,11 +15,13 @@
 
 ```
 clawhub-skill-workflow/
-├── templates/          # 技能模板
-├── scripts/           # 开发脚本
-├── docs/             # 文档
-├── examples/         # 示例技能
-└── tests/            # 测试工具
+├── skills/            # 完整技能
+│   └── clawhub-publisher/  # ClawHub发布自动化工具
+├── templates/         # 技能模板
+├── scripts/          # 开发脚本
+├── docs/            # 文档
+├── examples/        # 示例技能
+└── tests/           # 测试工具
 ```
 
 ## 快速开始
@@ -42,8 +44,39 @@ cd skills/my-new-skill
 
 ### 4. 发布到ClawHub
 ```bash
-./scripts/publish-skill.sh my-new-skill
+# 使用ClawHub Publisher技能
+cd skills/clawhub-publisher
+python3 publish_skill.py --path ../my-new-skill --slug my-new-skill --version 1.0.0
 ```
+
+## 🚀 ClawHub Publisher技能
+
+基于PaperMC v2.0.0发布经验创建的自动化发布工具，解决ClawHub发布中的常见问题。
+
+### 核心功能
+- **环境检查**: 验证ClawHub CLI、认证、网络等
+- **技能准备**: 验证SKILL.md格式、清理非文本文件、检查大小限制
+- **智能发布**: 处理版本冲突、重试机制、验证发布结果
+- **最佳实践**: 包含完整的发布工作流和错误处理
+
+### 快速使用
+```bash
+# 1. 检查环境
+python3 skills/clawhub-publisher/check_clawhub_setup.py
+
+# 2. 准备技能
+python3 skills/clawhub-publisher/prepare_skill.py --path /path/to/skill --version 1.0.0
+
+# 3. 发布技能
+python3 skills/clawhub-publisher/publish_skill.py --path /path/to/skill --slug your-skill --version 1.0.0
+```
+
+### 解决的问题
+1. **版本冲突**: 自动检测并建议新版本
+2. **文件格式**: 检查和清理非文本文件
+3. **认证问题**: 验证ClawHub登录状态
+4. **网络问题**: 重试机制和超时处理
+5. **验证发布**: 发布后自动验证结果
 
 ## 基于的实践经验
 
@@ -56,6 +89,12 @@ cd skills/my-new-skill
 - 服务器自动化管理
 - 安全性和稳定性考虑
 - 用户友好的交互设计
+
+### 从ClawHub发布经验学习:
+- **ClawHub Publisher技能**: 基于PaperMC v2.0.0发布经验创建的自动化发布工具
+- 解决版本冲突、文件格式限制、认证问题
+- 提供完整的发布工作流和错误处理
+- 支持批量发布和CI/CD集成
 
 ## 贡献指南
 
