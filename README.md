@@ -61,6 +61,10 @@ python3 publish_skill.py --path ../my-new-skill --slug my-new-skill --version 1.
 
 ### 快速使用
 ```bash
+# 方法1: 使用包装脚本（推荐）
+./scripts/publish-with-clawhub-publisher.sh --slug your-skill --version 1.0.0 /path/to/skill
+
+# 方法2: 直接使用Python脚本
 # 1. 检查环境
 python3 skills/clawhub-publisher/check_clawhub_setup.py
 
